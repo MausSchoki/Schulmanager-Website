@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE overlay PUBLIC "-//EGroupware GmbH//eTemplate 2//EN" "https://www.egroupware.org/etemplate2.0.dtd">
+<!-- $Id$ -->
+<overlay>
+	<template id="schulmanager.notenmanager.edit.inputinfo" template="" lang="" group="0" version="0.0.001">
+		<grid id="inputinfo" width="100%">
+			<columns>
+				<column width="40"/>
+				<column width="150"/>
+				<column width="100%"/>
+			</columns>
+			<rows>
+				<row>
+					<description label="Datum der Leistungserhebung: " class="sm_label"/>
+					<date statustext="Datum der Leistungserhebung" id="date" needed="true"/>
+				</row>
+				<row>
+					<description label="Art der Leistungserhebung: " class="sm_label"/>
+					<menulist>
+						<menupopup type="select" id="notgebart" needed="true" onchange="app.schulmanager.onNotGebArtChanged"/>
+					</menulist>
+				</row>
+				<row>
+					<description label="Beschreibung: " for="inputinfo_desc" class="sm_label"/>
+					<textbox id="desc" size="140" statustext="Beschreibung der Leistungserhebung" maxlength="150" needed="false"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="schulmanager.notenmanager.edit.header" template="" lang="" group="0" version="0.0.001">
+		<hbox>
+			<button statustext="Save the changes made" label="Save" id="button[save]" image="save" background_image="1"></button>
+			<button statustext="Apply the changes" label="Apply" id="button[apply]" image="apply" background_image="1"></button>
+			<button statustext="Exit without saving" label="Cancel" id="button[cancel]" image="cancel" background_image="1" novalidate="1"></button>
+			<hidden id="token"/>
+		</hbox>
+	</template>
+
+	<template id="schulmanager.notenmanager.edit" template="" lang="" group="0" version="0.0.001">
+		<grid>
+			<columns>
+				<column width="90%"></column>
+			</columns>
+			<rows>
+				<row>
+					<description id="sm_nm_edit_hint" class="sm_hint_red" align="center" label="Änderungen müssen aktiv über Speichern oder Übernehmen bestätigt werden! Datum, Art und Beschreibung werden nur für nachfolgende Eintragungen übernommen!" no_lang="1"></description>
+				</row>
+				<row>
+					<template id="schulmanager.notenmanager.edit.inputinfo"></template>
+				</row>
+				<row>
+					<template id="schulmanager.notenmanager.edit.header"></template>
+				</row>
+				<row disabled="!@msg">
+					<et2-description  span="all" class="redItalic" align="center" id="msg" noLang="1"></et2-description>
+				</row>
+				<row>
+					<template id="schulmanager.notenmanager.edit.gridrows"></template>
+				</row>
+			</rows>
+		</grid>
+	</template>
+</overlay>
